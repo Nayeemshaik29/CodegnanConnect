@@ -12,6 +12,7 @@
 
 Project structure breakdown
 🎯 User-Friendly Sections
+
 1.Features breakdown for both users and admins
 
 2.Technology stack listing
@@ -57,6 +58,7 @@ Project structure breakdown
 
 
 🎨 Design System Documentation
+
 1.Color customization guide
 
 2.Typography information
