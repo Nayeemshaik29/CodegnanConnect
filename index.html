@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceConnect Platform - Revolutionary Service Marketplace</title>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container flex justify-between items-center">
+            <div class="navbar-brand">
+                <i class="fas fa-network-wired me-2"></i>
+                <span>CodegnanConnect</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#providers" class="nav-link">Providers</a>
+                <a href="#request" class="nav-link">Request Service</a>
+                <a href="#admin" class="nav-link" id="adminLink">Progress</a>
+                
+            </div>
+            
+            <div class="nav-actions">
+                <!-- <button class="btn btn--secondary btn--sm" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                </button> -->
+                <!-- <button class="btn btn--primary btn--sm">Sign In</button> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Perfect Service Providers with AI-Powered Matching</h1>
+                <p>Connect with verified professionals across 50+ categories. Get instant quotes, compare providers, and track your projects seamlessly.</p>
+                
+                <div class="hero-search">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="What service do you need?" id="heroSearch">
+                        <button class="btn btn--primary">Search</button>
+                    </div>
+                    
+                    <div class="category-filters">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="technology">Technology</button>
+                        <button class="category-btn" data-category="design">Design</button>
+                        <button class="category-btn" data-category="marketing">Marketing</button>
+                        <button class="category-btn" data-category="consulting">Consulting</button>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2,847</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">189</span>
+                        <span class="stat-label">Service Providers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1,234</span>
+                        <span class="stat-label">Completed Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.7★</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services -->
+    <section id="services" class="featured-services">
+        <div class="container">
+            <h2>Featured Service Categories</h2>
+            <p>Explore our most popular service categories</p>
+            
+            <div class="service-categories" id="serviceCategories">
+                <!-- Categories populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Providers -->
+    <section id="providers" class="providers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Top-Rated Service Providers</h2>
+                <div class="provider-filters">
+                    <select id="industryFilter" class="form-control">
+                        <option value="">All Industries</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Design & Branding">Design & Branding</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                    </select>
+                    <select id="ratingFilter" class="form-control">
+                        <option value="">All Ratings</option>
+                        <option value="4.5">4.5+ Stars</option>
+                        <option value="4.0">4.0+ Stars</option>
+                        <option value="3.5">3.5+ Stars</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="provider-grid" id="providerGrid">
+                <!-- Providers populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Request Wizard -->
+    <section id="request" class="request-section">
+        <div class="container">
+            <div class="request-wizard">
+                <h2>Request a Service - Smart Wizard</h2>
+                <p>Get matched with perfect service providers in 3 simple steps</p>
+                
+                <!-- Progress Bar -->
+                <div class="wizard-progress">
+                    <div class="progress-bar" id="requestProgress">
+                        <div class="progress-fill" style="width: 33.33%"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step active">
+                            <div class="step-number">1</div>
+                            <span>Service Details</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <span>Budget & Timeline</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <span>Contact Info</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="serviceRequestForm" class="request-form">
+                    <!-- Step 1: Service Details -->
+                    <div class="form-step active" id="requestStep1">
+                        <h3>What service do you need?</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Service Category</label>
+                            <select name="serviceType" class="form-control" required>
+                                <option value="">Select a service</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile App Development">Mobile App Development</option>
+                                <option value="Brand Identity Design">Brand Identity Design</option>
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="SEO Services">SEO Services</option>
+                                <option value="Content Writing">Content Writing</option>
+                                <option value="Video Production">Video Production</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Description</label>
+                            <textarea name="requirements" class="form-control" rows="4" placeholder="Describe your project requirements in detail..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Industry</label>
+                            <select name="industry" class="form-control" required>
+                                <option value="">Select your industry</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Finance">Finance</option>
+                                <option value="E-commerce">E-commerce</option>
+                                <option value="Education">Education</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Restaurant">Restaurant</option>
+                                <option value="Law Firm">Law Firm</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Budget & Timeline -->
+                    <div class="form-step" id="requestStep2">
+                        <h3>Budget & Timeline</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Budget Range</label>
+                            <div class="budget-options">
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="$1,000 - $5,000" required>
+                                    <span>10,000 - 50,000</span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="$5,000 - $15,000" required>
+                                    <span>50,000 - 150,000</span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="$15,000 - $50,000" required>
+                                    <span>150,000 - 250,000</span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="$50,000+" required>
+                                    <span>550,000+</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Timeline</label>
+                            <select name="timeline" class="form-control" required>
+                                <option value="">Select timeline</option>
+                                <option value="ASAP (Rush)">ASAP (Rush)</option>
+                                <option value="1-2 weeks">1-2 weeks</option>
+                                <option value="2-4 weeks">2-4 weeks</option>
+                                <option value="1-3 months">1-3 months</option>
+                                <option value="3-6 months">3-6 months</option>
+                                <option value="6+ months">6+ months</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Additional Requirements</label>
+                            <textarea name="additionalDetails" class="form-control" rows="3" placeholder="Any specific requirements, preferences, or additional information..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Contact Info -->
+                    <div class="form-step" id="requestStep3">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="customerName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" name="companyName" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input" required>
+                                <span>I agree to receive contact from matched service providers</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <div class="wizard-nav">
+                        <button type="button" class="btn btn--secondary" id="prevRequestBtn" disabled>Previous</button>
+                        <button type="button" class="btn btn--primary" id="nextRequestBtn">Next</button>
+                        <button type="submit" class="btn btn--primary hidden" id="submitRequestBtn">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin" class="admin-dashboard hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Admin Dashboard</h2>
+                <div class="dashboard-controls">
+                    <select id="dashboardPeriod" class="form-control">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                    </select>
+                    <button class="btn btn--primary btn--sm">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="totalUsers">2,847</h3>
+                        <p>Total Users</p>
+                        <span class="metric-change positive">+18.5%</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="totalProviders">189</h3>
+                        <p>Service Providers</p>
+                        <span class="metric-change positive">+12.3%</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="totalRequests">1,456</h3>
+                        <p>Service Requests</p>
+                        <span class="metric-change positive">+25.8%</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="totalRevenue">2.8M</h3>
+                        <p>Total Revenue</p>
+                        <span class="metric-change positive">+31.2%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Monthly Performance</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Service Categories</h3>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="admin-tables">
+                <div class="table-section">
+                    <h3>Recent Service Requests</h3>
+                    <div class="table-container">
+                        <table id="requestsTable">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Budget</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="table-section">
+                    <h3>Top Service Providers</h3>
+                    <div class="table-container">
+                        <table id="providersTable">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Industry</th>
+                                    <th>Rating</th>
+                                    <th>Projects</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button class="btn btn--secondary btn--sm" id="markAllRead">Mark all read</button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Provider Details Modal -->
+    <div class="modal hidden" id="providerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProviderName">Provider Details</h3>
+                <button class="modal-close" id="closeProviderModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalProviderContent">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="closeProviderModalBtn">Close</button>
+                <button class="btn btn--primary" id="requestQuoteBtn">Request Quote</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal hidden" id="successModal">
+        <div class="modal-content success-modal">
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Service Request Submitted!</h3>
+                <p>Thank you for your request. We'll match you with the best service providers and they'll contact you within 24 hours.</p>
+                <p><strong>Request ID:</strong> <span id="requestId">#SR-2024-001</span></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--primary" id="closeSuccessModal">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
